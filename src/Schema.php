@@ -36,8 +36,8 @@ class Schema
     {
         $this->version = $json['@attributes']['Version'];
 
-        foreach ($json['DataServices']['Schema'] as $item) {
-            $this->raw[$item['@attributes']['Namespace']] = $item;
+        foreach ($json['DataServices']['Schema'] as $key => $item) {
+            $this->raw['NAV'][$key] = $item;
         }
 
         $this->entity_types  = new Collection();
@@ -52,10 +52,6 @@ class Schema
 
     protected function propagate()
     {
-        foreach ($this->raw['NAV.ComplexTypes']['ComplexType'] as $type) {
-            $this->complex_types[$type['@attributes']['Name']] = new ComplexType($type, $this);
-        }
-
         foreach ($this->raw['NAV']['EntityType'] as $type) {
             $this->entity_types[$type['@attributes']['Name']] = new EntityType($type, $this);
         }
