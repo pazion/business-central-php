@@ -89,6 +89,7 @@ class EntityCollection implements \ArrayAccess, \Iterator, \JsonSerializable, Js
         }
     }
 
+    #[\ReturnTypeWillChange]
     public function count()
     {
         return $this->total_count;
@@ -185,6 +186,7 @@ class EntityCollection implements \ArrayAccess, \Iterator, \JsonSerializable, Js
 
     // region Contracts
 
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return $this->toArray();
@@ -204,11 +206,13 @@ class EntityCollection implements \ArrayAccess, \Iterator, \JsonSerializable, Js
 
     // endregion
 
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return current($this->collection);
     }
 
+    #[\ReturnTypeWillChange]
     public function next()
     {
         $exists = next($this->collection);
@@ -217,36 +221,43 @@ class EntityCollection implements \ArrayAccess, \Iterator, \JsonSerializable, Js
         }
     }
 
+    #[\ReturnTypeWillChange]
     public function key()
     {
         return key($this->collection);
     }
 
+    #[\ReturnTypeWillChange]
     public function valid()
     {
         return isset($this->collection[$this->key()]);
     }
 
+    #[\ReturnTypeWillChange]
     public function rewind()
     {
         reset($this->collection);
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return !!$this->find($offset);
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->find($offset);
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         // TODO: Implement offsetSet() method.
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         // TODO: Implement offsetUnset() method.

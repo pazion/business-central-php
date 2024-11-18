@@ -311,7 +311,7 @@ class Entity implements \ArrayAccess, \JsonSerializable, Jsonable, Arrayable
     }
 
     // region Interfaces
-
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         if ($this->getEntityType()->propertyExists($offset)) {
@@ -321,6 +321,7 @@ class Entity implements \ArrayAccess, \JsonSerializable, Jsonable, Arrayable
         }
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if (in_array($offset, $this->guarded)) {
@@ -342,6 +343,7 @@ class Entity implements \ArrayAccess, \JsonSerializable, Jsonable, Arrayable
         }
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         if ($this->getEntityType()->propertyExists($offset)) {
@@ -351,7 +353,8 @@ class Entity implements \ArrayAccess, \JsonSerializable, Jsonable, Arrayable
         }
     }
 
-    public function offsetUnset($offset)
+    #[\ReturnTypeWillChange]
+    public function offsetUnset(mixed $offset)
     {
         // No unset
     }
@@ -382,6 +385,7 @@ class Entity implements \ArrayAccess, \JsonSerializable, Jsonable, Arrayable
         ], $this->attributes, $this->relations);
     }
 
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return $this->toArray();
